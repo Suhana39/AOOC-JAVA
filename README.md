@@ -1,2 +1,4 @@
 # AOOC-JAVA
-Advanced Object-Oriented Concepts Java programs and examples
+
+This repository contains Advanced Object-Oriented Concepts (AOOC) programs in Java,
+created for academic learning and practice.
