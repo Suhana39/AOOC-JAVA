@@ -1,0 +1,44 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class ChangeColor extends JFrame implements ActionListener {
+
+    JComboBox<String> colors;
+
+    ChangeColor() {
+        setTitle("Background Color");
+        setSize(300, 200);
+        setLayout(new FlowLayout());
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        String[] colorList = {"White", "Red", "Green", "Blue", "Yellow"};
+        colors = new JComboBox<>(colorList);
+
+        colors.addActionListener(this);
+
+        add(colors);
+
+        setVisible(true);
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        String c = (String) colors.getSelectedItem();
+
+        if (c.equals("Red")) {
+            getContentPane().setBackground(Color.RED);
+        } else if (c.equals("Green")) {
+            getContentPane().setBackground(Color.GREEN);
+        } else if (c.equals("Blue")) {
+            getContentPane().setBackground(Color.BLUE);
+        } else if (c.equals("Yellow")) {
+            getContentPane().setBackground(Color.YELLOW);
+        } else {
+            getContentPane().setBackground(Color.WHITE);
+        }
+    }
+
+    public static void main(String[] args) {
+        new ChangeColor();
+    }
+}
