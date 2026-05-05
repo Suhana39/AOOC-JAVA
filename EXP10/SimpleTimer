@@ -1,0 +1,45 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class SimpleTimer extends JFrame implements ActionListener {
+
+    JLabel label;
+    JButton startBtn, stopBtn;
+    Timer timer;
+    int seconds = 0;
+
+    // Constructor
+    SimpleTimer() {
+        setTitle("Simple Timer");
+        setSize(300, 200);
+        setLayout(new FlowLayout());
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        label = new JLabel("Time: 0 sec");
+        startBtn = new JButton("Start");
+        stopBtn = new JButton("Stop");
+
+        add(label);
+        add(startBtn);
+        add(stopBtn);
+
+        // Timer fires event every 1 second (1000 ms)
+        timer = new Timer(1000, this);
+
+        startBtn.addActionListener(e -> timer.start());
+        stopBtn.addActionListener(e -> timer.stop());
+
+        setVisible(true);
+    }
+
+    // This method runs every 1 second
+    public void actionPerformed(ActionEvent e) {
+        seconds++;
+        label.setText("Time: " + seconds + " sec");
+    }
+
+    public static void main(String[] args) {
+        new SimpleTimer();
+    }
+}
