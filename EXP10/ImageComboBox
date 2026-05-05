@@ -1,0 +1,50 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class ImageComboBox extends JFrame implements ItemListener {
+
+    JComboBox<String> combo;
+    JLabel label;
+
+    ImageIcon img1, img2;
+
+    ImageComboBox() {
+        setTitle("Image Viewer");
+        setSize(300, 300);
+        setLayout(new FlowLayout());
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        String[] images = {"Select", "Image1", "Image2"};
+        combo = new JComboBox<>(images);
+
+        label = new JLabel();
+
+        // Load images (keep images in same folder)
+        img1 = new ImageIcon("img1.jpg");
+        img2 = new ImageIcon("img2.jpg");
+
+        combo.addItemListener(this);
+
+        add(combo);
+        add(label);
+
+        setVisible(true);
+    }
+
+    public void itemStateChanged(ItemEvent e) {
+        String selected = (String) combo.getSelectedItem();
+
+        if (selected.equals("Image1")) {
+            label.setIcon(img1);
+        } else if (selected.equals("Image2")) {
+            label.setIcon(img2);
+        } else {
+            label.setIcon(null);
+        }
+    }
+
+    public static void main(String[] args) {
+        new ImageComboBox();
+    }
+}
