@@ -1,0 +1,44 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class TextCounter extends JFrame implements KeyListener {
+
+    JTextArea textArea;
+    JLabel label;
+
+    TextCounter() {
+        setTitle("Text Counter");
+        setSize(400, 300);
+        setLayout(new FlowLayout());
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        textArea = new JTextArea(10, 30);
+        label = new JLabel("Characters: 0 Words: 0");
+
+        textArea.addKeyListener(this);
+
+        add(new JScrollPane(textArea));
+        add(label);
+
+        setVisible(true);
+    }
+
+    public void keyReleased(KeyEvent e) {
+        String text = textArea.getText();
+
+        int charCount = text.length();
+
+        String words[] = text.trim().split("\\s+");
+        int wordCount = text.trim().isEmpty() ? 0 : words.length;
+
+        label.setText("Characters: " + charCount + " Words: " + wordCount);
+    }
+
+    public void keyPressed(KeyEvent e) {}
+    public void keyTyped(KeyEvent e) {}
+
+    public static void main(String[] args) {
+        new TextCounter();
+    }
+}
