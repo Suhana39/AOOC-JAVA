@@ -1,0 +1,37 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class MouseCoordinates extends JFrame implements MouseMotionListener {
+
+    JLabel label;
+
+    // Constructor
+    MouseCoordinates() {
+        setTitle("Mouse Coordinates");
+        setSize(400, 300);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new FlowLayout());
+
+        label = new JLabel("Move mouse inside the window");
+        add(label);
+
+        addMouseMotionListener(this);
+
+        setVisible(true);
+    }
+
+    // When mouse is moved
+    public void mouseMoved(MouseEvent e) {
+        int x = e.getX();
+        int y = e.getY();
+        label.setText("X: " + x + " , Y: " + y);
+    }
+
+    // Required but not used
+    public void mouseDragged(MouseEvent e) {}
+
+    public static void main(String[] args) {
+        new MouseCoordinates();
+    }
+}
